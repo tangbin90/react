@@ -11,7 +11,8 @@ export default function Board() {
     nextSquares[i]="X";
     setSquares(nextSquares);
   }
-
+// Notice the new () => syntax. Here, () => handleClick(0) is an arrow function, 
+// which is a shorter way to define functions. When the square is clicked, the code after the => “arrow” will run, calling handleClick(0).
   return (
     <div>
       <div className="board-row">
