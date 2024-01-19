@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 
 export default class myApp extends Component {
-  myRef = React.createRef()
-
-  state = {
-    myShow:true
+  constructor(){
+    super()
+    this.state = {
+        myShow:true,
+        myName:'xiaomign'
+      } 
   }
 
   render() {
     return (
       <div>
-        <h1>Welcome to React</h1>
+        <h1>Welcome to React {this.state.myName}</h1>
         <button ref={this.myRef}  onClick={this.onButtonClick}>{this.state.myShow?"Fav":"unFav"}</button>
 
       </div>
@@ -19,7 +21,8 @@ export default class myApp extends Component {
 
   onButtonClick = ()=>{
        this.setState({
-        myShow:!this.state.myShow
+        myShow:!this.state.myShow,
+        myName:"xiaoming"
        })
   }
 }

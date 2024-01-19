@@ -1,7 +1,8 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './01-base/08-state'
+import { createRoot } from "react-dom/client";
+import App from './01-base/10-todolist'
 
-ReactDOM.render(<App></App>, document.getElementById("root"))
+const root = createRoot(document.getElementById('root'))
+root.render(<App></App>)
 
 /* jsx == js + xml */
