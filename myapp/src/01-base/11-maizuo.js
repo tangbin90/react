@@ -28,9 +28,9 @@ export default class App extends Component {
         case 0: 
             return <Film></Film>
         case 1:
-            return <Center></Center>
-        case 2:
             return <Cinema></Cinema>
+        case 2:
+            return <Center></Center>
         default:
             return null
         }
