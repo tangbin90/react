@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Betterscroll from 'better-scroll'
 
 export default class Cinema extends Component {
 
@@ -22,7 +23,10 @@ export default class Cinema extends Component {
       this.setState({
         cinemaList:res.data.data.cinemas,
         backCinemaList:res.data.data.cinemas
+      },()=>{
+        new Betterscroll('.cinemaList')
       })
+     
     })
 
   }
@@ -31,14 +35,19 @@ export default class Cinema extends Component {
     return (
       <div>
         <input onInput={this.handleInput}/>
-          {
+        <div className='cinemaList' style={{height:'500px', background:'yellow', overflow:'hidden'}}>
+            <div className="cinemaMustHave">
+            {
             this.state.cinemaList.map(item=>
               <dl key={item.cinemaId}>
                 <dt>{item.name}</dt>
                 <dd>{item.address}</dd>
               </dl>
             )
-          }
+            }
+            </div>
+        </div>
+          
       </div>
     )
   }

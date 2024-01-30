@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRoot } from "react-dom/client";
-import App from './01-base/11-maizuo'
+import App from './shangguigu/065'
 
 const root = createRoot(document.getElementById('root'))
 root.render(<App></App>)
