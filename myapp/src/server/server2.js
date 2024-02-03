@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 
 app.use((request, response, next)=>{
-    console.log('some requirements to server2')
+    console.log('some requirements to server2',request)
     next()
 })
 

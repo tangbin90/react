@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 
 app.use((request, response, next)=>{
-    console.log('some requirements')
+    console.log('some requirements', request)
     next()
 })
 

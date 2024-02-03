@@ -9,10 +9,18 @@ export default class app extends Component {
             error=>{console.log('error', error);}
         )
     }
+
+    getCarData= ()=>{
+      axios.get('http://localhost:3000/cars').then(
+          response=>{console.log('success', response.data);},
+          error=>{console.log('error', error);}
+      )
+    }
   render() {
     return (
       <div>
         <button onClick={this.getStudentData}>Click To Get Student Data</button>
+        <button onClick={this.getCarData}>Click To Get Cars Data</button>
       </div>
     )
   }
