@@ -1,3 +1,6 @@
+# Change Source
+## NRM
+NRM use taobao
 # 71
 ## Send Request XHR
 ``` js
@@ -65,3 +68,35 @@ xhr.send();
 1. single page web application, SPA
 2. get data through ajax 
 3. partially refresh
+
+## 路由
+路由是一个映射关系
+点击->改路径(history.push)->前端路由器监听路径(history.listen)路径匹配 -> Component
+key value
+path component/function
+/home Home
+
+### 路由分类
+后端路由-value是function router.get(path, function(req, res))
+前端路由-value是component <Route path="/test" componennt ={Test}>
+
+BOM主要用于与浏览器窗口进行交互，而DOM则用于操作页面的内容和结构。
+前端路由的基石是bom.history
+```js
+let history = History.createBrowserHistory() //直接使用h5推出的history的API
+let history = HIstory.createHashHistory() // hash值 锚点跳转 demo.html#/test1
+```
+
+# React-router
+## react-router-dom 的理解
+react的一个插件库
+专门实现一个SPA应用
+机遇react的项目都会用到
+
+## react-router-dom相关API
+<BrowserRouter>
+<HashRouter>
+<Route>
+<Redirect>
+<Link>
+<NavLink>
