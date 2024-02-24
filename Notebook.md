@@ -48,3 +48,20 @@ xhr.onerror = function() {
 
 xhr.send();
 ```
+
+## github案例知识点
+
+1. 带有网络请求的时候考虑失败情况
+2. ES6中解构赋值和重命名
+3. 消息订阅和发布机制
+   1. 先订阅在发布
+   2. 试用任何组件的同学
+   3. 在组件的componentWillUnmount中取消订阅
+4. fetch发送请求，关注分离的思想。
+
+# Chapter 5: React Router
+
+## SPA
+1. single page web application, SPA
+2. get data through ajax 
+3. partially refresh
