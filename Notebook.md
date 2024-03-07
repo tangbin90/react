@@ -255,3 +255,14 @@ https://element.eleme.cn/#/zh-CN
 
 Vant UI（Vue）
 
+
+## Redux
+与React统一状态管理，与React用得比较多。（Vuex在vue中管理状态
+）
+
+让其他组件可以随时拿到
+一个组件要改变另一个组件得状态（通信）
+不用比较吃力那就考虑使用，能不用就不用
+
+obsidian://open?vault=Reading&file=Web%2FRedux
+
