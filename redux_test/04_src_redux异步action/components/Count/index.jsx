@@ -1,33 +1,46 @@
 import React, { Component } from 'react'
+//引入store获取状态
+import store from '../../redux/store'
+//引入actionCreator，专门用于创建action对象
+import {createIncrementAction,createDecrementAction, createIncrementAsyncAction} from '../../redux/count_action'
 
 export default class Count extends Component {
   state = {carName:"奔驰c63"}
 
+  // componentDidMount(){
+  //   //检测redux中状态的变化，只要变化，就调用render
+  //   store.subscribe(()=>{
+  //     this.setState({})
+  //   })
+  // }
+
   increment = ()=>{
     const {value} = this.selectNumber
-    this.props.increment(value*1)
+    store.dispatch(createIncrementAction(value*1))
   }
 
   decrement = ()=>{
     const {value} = this.selectNumber
-    this.props.decrement(value*1)
+    store.dispatch(createDecrementAction(value*1))
   }
 
   incrementIfOdd = ()=>{
     const {value} = this.selectNumber
-    
+    const count = store.getState()
+    if(count % 2 !== 0){
+      store.dispatch(createIncrementAction(value*1))
+    }
   }
 
   incrementAsync = ()=>{
     const {value} = this.selectNumber
-    this.props.incrementAsync(value*1,1000)
+    store.dispatch(createIncrementAsyncAction(value*1,500))
   }
 
   render() {
-    // console.log('UI组件接收到的props是',this.props)
     return (
       <div>
-        <h1>Current Sum is: {this.props.count}</h1>
+        <h1>Current Sum is: {store.getState()}</h1>
         <select ref={c => this.selectNumber = c}>
             <option value="1">1</option>
             <option value="2">2</option>
