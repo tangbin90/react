@@ -1,29 +1,24 @@
-//引入Count的UI组件
-import CountUI from '../../components/Count'
-
-//引入connect用于连接UI组件与redux
+import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import { createIncrementAction, createDecrementAction, createIncrementAsyncAction } from '../../redux/count_action'
+import { createIncrementAction } from '../../redux/count_action'
 
-//mapStateToProps函数返回的是一个对象
-//返回的对象中的key就作为传递给UI组件props的key value就作为传递给UI组件props的value
-//mapStateToProps用于传递状态
-function mapStateToProps(state) {
-    return {count: state}
-}
-
-/*
-1. mapDispatchToProps函数返回的是一个对象
-2. 返回的对象中的key就作为传递给UI组件props的key value就作为传递给UI组件props的value
-3. mapDispatchToProps用于传递操作状态的方法
-*/
-function mapDispatchToProps(dispatch){
-    return {
-        increment: number => dispatch(createIncrementAction(number)),
-        decrement: number => dispatch(createDecrementAction(number)),
-        incrementAsync: (number, time) => dispatch(createIncrementAsyncAction(number, time))
+class Count extends Component {
+    add = () => {
+        this.props.increment(1)
     }
+  render() {
+    return (
+      <div>
+      <h2>当前求和为: {this.props.total}</h2>
+      <button onClick={this.add}> Click Me </button>
+      </div>
+    )
+  }
 }
 
-//用connect()()创建并暴露一个容器组件
-export default connect(mapStateToProps, mapDispatchToProps)(CountUI)
+export default connect(
+    state => ({total: state}),  
+    {
+        increment: createIncrementAction
+    }
+)(Count)
