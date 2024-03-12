@@ -69,3 +69,53 @@ export default connect(
 )(Count)
 ```
     3. 在UI组件中通过this.props.xxxx读取和操作状态
+
+## 6. React Redux 数据共相版
+1. 定义一个Person组件，和Count通过redux共享数据
+2. 为Person组件编写reducer action 配置你constant 常量
+3. 重点：Person的reducer和Count的Reducer要使用conbineReducer进行合并，合并之后总状态是一个对象
+4. 交给store的总是reducer，最后注意在组件中取状态的时候要“取到位”
+此处length就是我们要取出的数据
+```jsx
+    state => ({count: state.count, renshu:state.rens.length})
+```
+
+## 7. 纯函数
+在 JavaScript 中，纯函数是一种特殊类型的函数，它具有以下特性：
+
+确定性：对于相同的输入，纯函数总是返回相同的输出。这意味着如果你用相同的参数多次调用一个纯函数，它每次都会返回相同的结果。
+
+无副作用：纯函数不会改变其外部环境或全局状态（不做网络请求，IO接口）。这意味着纯函数不会修改输入参数，也不会改变全局对象或变量。
+
+redux的reducer必须是一个纯函数
+
+
+```jsx
+function personReducer(preState=initState,action){
+    console.log('PersionReducer:',initState)
+    const {type,data} = action
+    switch (type) {
+        case ADD_PERSON://添加一个人
+        //此处不可以写成preState.unshift(data),因为unshift会改变原数组，(此处改变了输入参数)ui不会render因为浅对比无差异。而redux要求reducer不能改变原数组
+            // preState.unshift(data);
+            // console.log('PersionReducer:',preState);
+            return [data, ...preState]
+        default:
+            return preState  
+    }
+}
+```
+
+## 8.开发者工具
+1)yarn add redux-devtools-extension
+2）store中进行配置
+```jsx
+import {composeWithDevTools} from 'redux-devtools-extension'
+
+export default createStore(allReducers, composeWithDevTools(applyMiddleware(thunk)))
+
+```
+
+## 9.求和案例react-redux最终版本
+1.所有变量名字要规范，尽量出发对象的简写形式
+2. reducers文件夹中编写index.js专门用于汇总并暴露所有的reducers

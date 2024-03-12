@@ -16,8 +16,7 @@
 //         }, time)
 //     }
 // }
-import {INCREMENT, DECREMENT} from './constant'
-import store from './store'
+import {INCREMENT, DECREMENT} from '../constant'
 
 //同步action, 返回值为对象
 const createIncrementAction = data => ({type: INCREMENT, data})   

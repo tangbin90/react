@@ -1,6 +1,6 @@
 //引入connect用于连接UI组件与redux
 import {connect} from 'react-redux'
-import { increment, decrement, incrementAsync } from '../../redux/actions/count'
+import { createIncrementAction, createDecrementAction, createIncrementAsyncAction } from '../../redux/actions/count'
 import React, { Component } from 'react'
 
 class Count extends Component {
@@ -32,7 +32,7 @@ class Count extends Component {
     console.log('UI组件接收到的props是',this.props)
     return (
       <div>
-        <h1>Current Sum is: {this.props.count}, All person number is: {this.props.personCount}</h1>
+        <h1>Current Sum is: {this.props.count}, All person number is: {this.props.renshu}</h1>
         <select ref={c => this.selectNumber = c}>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -70,7 +70,7 @@ class Count extends Component {
 
 //用connect()()创建并暴露一个容器组件
 export default connect(
-    state => ({count: state.count, personCount:state.persons.length}),
+    state => ({count: state.count, renshu:state.rens.length}),
     //原来写法
     // dispatch => ({
     //         increment: number => dispatch(createIncrementAction(number)),
@@ -79,8 +79,8 @@ export default connect(
     //     })
     //简写    
     {
-        increment,
-        decrement,
-        incrementAsync
+        increment:createIncrementAction,
+        decrement:createDecrementAction,
+        incrementAsync:createIncrementAsyncAction
     }
 )(Count)
