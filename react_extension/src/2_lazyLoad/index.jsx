@@ -1,7 +1,11 @@
-import React, { Component } from 'react'
-import {Link,Route, Routes} from 'react-router-dom'
-import Home from './components/Home'
-import About from './components/About'
+import React, { Component, lazy, Suspense } from 'react'
+import {NavLink,Route, Routes} from 'react-router-dom'
+import Loading from './Loading'
+// import Home from './Home'
+// import About from './About'
+
+const Home = lazy(() => import('./Home'))
+const About = lazy(() => import('./About'))
 
 export default class App extends Component {
   render() {
@@ -20,26 +24,26 @@ export default class App extends Component {
               <a className="list-group-item active" href="./home.html">Home</a> */}
 
               {/* React 中通过路由链接切换组件 */}
-                <Link className="list-group-item" to="/about">About</Link>
-                <Link className="list-group-item" to="/home">Home</Link>
-
-
+                <NavLink className="list-group-item" to="/about">About</NavLink>
+                <NavLink className="list-group-item" to="/home">Home</NavLink>
             </div>
           </div>
           <div className="col-xs-6">
             <div className="panel">
               <div className="panel-body">
+                <Suspense fallback={<Loading/>}>
                 {/* 注册路由 */}
                 <Routes>
-                  <Route path="/about" component={About}/>
-                  <Route path="/Home" component={Home}/>
+                  <Route path="/about" element={<About/>}/>
+                  <Route path="/Home" element={<Home/>}/>
                 </Routes>
+                </Suspense>
 
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     )
   }
 }
